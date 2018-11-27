@@ -2,14 +2,53 @@ import VideoList from "./VideoList.js";
 import VideoPlayer from "./VideoPlayer.js";
 import exampleVideoData from "../data/exampleVideoData.js";
 
+var video = {
+  kind: '',
+  etag: '',
+  id: {
+    kind: '',
+    videoId: ''
+  },
+  snippet: {
+    publishedAt: '',
+    channelId: '',
+    title: '',
+    description: '',
+    thumbnails: {
+      default: {
+        url: '',
+        width: 120,
+        height: 90
+      },
+      medium: {
+        url: '',
+        width: 320,
+        height: 180
+      },
+      high: {
+        url: '',
+        width: 480,
+        height: 360
+      }
+    },
+    channelTitle: '',
+    liveBroadcastContent: 'none'
+  }
+};
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-                  video: exampleVideoData[0], 
-                  videos: exampleVideoData
+                  video: video, 
+                  videos: [video]
                 };
+  }
+
+  componentDidMount() {
+    this.props.searchYouTube(undefined, (data) => this.setState({
+
+    }));
   }
 
   onClickHandler(event, video) {

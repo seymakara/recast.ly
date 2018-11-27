@@ -1,4 +1,6 @@
-var searchYouTube = (options, callback) => {
+import YOUTUBE_API_KEY from '../config/youtube.js';
+
+var searchYouTube = (options = {key: YOUTUBE_API_KEY, query: 'react', max: 5}, callback) => {
 
   $.ajax({
     url: 'https://www.googleapis.com/youtube/v3/search',
