@@ -46,9 +46,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.props.searchYouTube(undefined, (data) => this.setState({
-
-    }));
+   this.props.searchYouTube(undefined, (data) => this.setState({
+    videos : data,
+    video: data[0]  
+   }));
   }
 
   onClickHandler(event, video) {
