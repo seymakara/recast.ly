@@ -1,24 +1,25 @@
 import VideoList from "./VideoList.js";
+import VideoPlayer from "./VideoPlayer.js";
 import exampleVideoData from "../data/exampleVideoData.js";
-import VideoPlayer from "./VideoPlayer.js"
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-                video: exampleVideoData[0], 
-                videos: exampleVideoData
+                  video: exampleVideoData[0], 
+                  videos: exampleVideoData
                 };
   }
 
-  onClickHandler (event, video) {
+  onClickHandler(event, video) {
     this.setState({
       video // ES6 version of video: video
     });
   }
 
-  render () {
-    return(
+  render() {
+    return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
