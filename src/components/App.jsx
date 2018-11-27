@@ -72,7 +72,7 @@ class App extends React.Component {
           video: data[0]  
         }));
     }
-    debounceTimeout = setTimeout(() => apiSearch(searchInput), 0);
+    debounceTimeout = setTimeout(() => apiSearch(searchInput), 500);
   }
 
   render() {
