@@ -38,6 +38,8 @@ var video = {
   }
 };
 
+var debounceTimeout = null;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -45,6 +47,7 @@ class App extends React.Component {
                   video: video, 
                   videos: [video]
                 };
+    //this.debounceTimeout = null;
   }
 
   componentDidMount() {
@@ -53,18 +56,23 @@ class App extends React.Component {
     video: data[0]  
    }));
   }
-
+  
   onClickHandler(event, video) {
     this.setState({
       video // ES6 version of video: video
     });
   }
+
   onTypeHandler(event){
-    console.log("event.target", event.target.value)
-    this.props.searchYouTube({key: YOUTUBE_API_KEY, query: event.target.value, max: 5}, (data) => this.setState({
-      videos : data,
-      video: data[0]  
-    }));
+    clearTimeout(debounceTimeout);
+    var searchInput = event.target.value; 
+    var apiSearch = (input) => {
+        this.props.searchYouTube({key: YOUTUBE_API_KEY, query: input, max: 5}, (data) => this.setState({
+          videos : data,
+          video: data[0]  
+        }));
+    }
+    debounceTimeout = setTimeout(() => apiSearch(searchInput), 0);
   }
 
   render() {
