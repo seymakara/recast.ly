@@ -12,7 +12,8 @@ class App extends React.Component {
     super(props);
     this.state = {
                   video: blankData.video, 
-                  videos: [blankData.video]
+                  videos: [blankData.video],
+                  autoPlay: false
                 };
   }
 
@@ -41,9 +42,19 @@ class App extends React.Component {
     blankData.debounceTimeout = setTimeout(() => apiSearch(searchInput), 500);
   }
 
+  ToggleAutoPlay(event) {
+    this.setState({
+      autoPlay: !this.state.autoPlay 
+    });
+  }
+
   render() {
+
+    var style = this.state.autoPlay ? {backgroundColor: 'green'} : {backgroundColor: 'red'};
+
     return (
       <div>
+        <button style={style} onClick={this.ToggleAutoPlay.bind(this)}>Toggle auto-play</button>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
             <Search onTypeHandler={this.onTypeHandler.bind(this)} />
@@ -51,7 +62,7 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer video={this.state.video} />
+            <VideoPlayer autoPlay={this.state.autoPlay} video={this.state.video} />
           </div>
           <div className="col-md-5">
             <VideoList onClickHandler={this.onClickHandler.bind(this)} videos={this.state.videos} />
