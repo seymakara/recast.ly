@@ -4,6 +4,7 @@ import Search from "./Search.js";
 import exampleVideoData from "../data/exampleVideoData.js";
 import YOUTUBE_API_KEY from '../config/youtube.js';
 import blankData from "../data/blankData.js";
+import searchYouTube2 from '../lib/searchYouTube2.js';
 
 
 class App extends React.Component {
@@ -13,7 +14,8 @@ class App extends React.Component {
     this.state = {
                   video: blankData.video, 
                   videos: [blankData.video],
-                  autoPlay: false
+                  autoPlay: false,
+                  showStats: true
                 };
   }
 
@@ -26,8 +28,19 @@ class App extends React.Component {
   
   onClickHandler(event, video) {
     this.setState({
-      video // ES6 version of video: video
+      video, // ES6 version of video: video
+      showStats: false
     });
+    
+    //searchYouTube2({key: YOUTUBE_API_KEY, id: video.id.videoId, max: 50}, (data) => {
+      //this.setState({
+        //showStats: true
+        //stats: data
+      //});
+
+    //});
+    
+  
   }
 
   onTypeHandler(event){
