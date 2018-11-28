@@ -1,6 +1,7 @@
+// props = {onTypeHandler : this.onTypeHandler.bind(this) }
 var Search = (props) => (
   <div className="search-bar form-inline">
-    <input className="form-control" type="text" onChange={props.onTypeHandler}/>
+    <input className="form-control" type="text" onChange={props.onTypeHandler} />
     <button className="btn hidden-sm-down">
       <span className="glyphicon glyphicon-search"></span>
     </button>

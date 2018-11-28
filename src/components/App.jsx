@@ -3,51 +3,17 @@ import VideoPlayer from "./VideoPlayer.js";
 import Search from "./Search.js";
 import exampleVideoData from "../data/exampleVideoData.js";
 import YOUTUBE_API_KEY from '../config/youtube.js';
+import blankData from "../data/blankData.js";
 
-var video = {
-  kind: '',
-  etag: '',
-  id: {
-    kind: '',
-    videoId: ''
-  },
-  snippet: {
-    publishedAt: '',
-    channelId: '',
-    title: '',
-    description: '',
-    thumbnails: {
-      default: {
-        url: '',
-        width: 120,
-        height: 90
-      },
-      medium: {
-        url: '',
-        width: 320,
-        height: 180
-      },
-      high: {
-        url: '',
-        width: 480,
-        height: 360
-      }
-    },
-    channelTitle: '',
-    liveBroadcastContent: 'none'
-  }
-};
-
-var debounceTimeout = null;
 
 class App extends React.Component {
   constructor(props) {
+    // App.props = props;
     super(props);
     this.state = {
-                  video: video, 
-                  videos: [video]
+                  video: blankData.video, 
+                  videos: [blankData.video]
                 };
-    //this.debounceTimeout = null;
   }
 
   componentDidMount() {
@@ -64,7 +30,7 @@ class App extends React.Component {
   }
 
   onTypeHandler(event){
-    clearTimeout(debounceTimeout);
+    clearTimeout(blankData.debounceTimeout);
     var searchInput = event.target.value; 
     var apiSearch = (input) => {
         this.props.searchYouTube({key: YOUTUBE_API_KEY, query: input, max: 5}, (data) => this.setState({
@@ -72,7 +38,7 @@ class App extends React.Component {
           video: data[0]  
         }));
     }
-    debounceTimeout = setTimeout(() => apiSearch(searchInput), 500);
+    blankData.debounceTimeout = setTimeout(() => apiSearch(searchInput), 500);
   }
 
   render() {
@@ -80,7 +46,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search onTypeHandler={this.onTypeHandler.bind(this)}/>
+            <Search onTypeHandler={this.onTypeHandler.bind(this)} />
           </div>
         </nav>
         <div className="row">

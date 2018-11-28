@@ -39,8 +39,6 @@ describe ('Search', function() {
       setTimeout(() => {
         var newVideoEntryTitleElements = scryRenderedDOMComponentsWithClass(app, 'video-list-entry-title');
         newVideoEntryTitleElements.forEach((videoEntryTitle, i) => {
-          console.log("video entry", videoEntryTitle.innerHTML)
-          console.log("fake video data", moreFakeVideoData[i])
           expect(videoEntryTitle.innerHTML).to.equal(moreFakeVideoData[i].snippet.title);
         });
       }, 700)
